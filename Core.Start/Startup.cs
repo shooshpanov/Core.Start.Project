@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Start.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,12 @@ namespace Core.Start
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            SetUpDependencies(services);
+        }
+
+        private void SetUpDependencies(IServiceCollection services)
+        {
+            services.AddTransient<IStringService, StringService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
